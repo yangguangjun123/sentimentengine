@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <Appenders>
+    <Console name="Console" target="stdout">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+    
+    <RollingFile name="RollingFile" fileName="logs/sentiments.log"
+                 filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+      <PatternLayout>
+        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="250 MB"/>
+      </Policies>
+    </RollingFile>
+    
+  </Appenders>
+  <Loggers>
+    <Root level="ERROR">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="RollingFile"/>
+    </Root>
+    
+    <logger name="org.myproject" level="TRACE" additivity="false" >
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="RollingFile" />  
+    </logger>
+    
+    <logger name="org.myproject.sentiment" level="TRACE" additivity="false" >
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="RollingFile" />  
+    </logger>
+    
+  </Loggers>
+</Configuration>
