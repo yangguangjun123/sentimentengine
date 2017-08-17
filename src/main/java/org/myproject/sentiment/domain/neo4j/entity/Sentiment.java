@@ -37,4 +37,8 @@ public class Sentiment {
 	    return linkedFrom;
     }
 
+    public Set<Sentiment> getLinkedTo() {
+	    return linkedTo;
+    }
+
 }
