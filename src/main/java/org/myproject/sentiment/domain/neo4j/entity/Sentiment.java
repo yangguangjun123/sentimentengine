@@ -37,4 +37,17 @@ public class Sentiment {
 	    return linkedFrom;
     }
 
+    @Override
+    public String toString() {
+        return "Sentiment{" +
+                "id='" + id + '\'' +
+                ", sourceId='" + sourceId + '\'' +
+                ", text='" + text + '\'' +
+                ", sourceName='" + sourceName + '\'' +
+                ", authorName='" + authorName + '\'' +
+                ", authorLocation='" + authorLocation + '\'' +
+                ", linkedFrom=" + linkedFrom +
+                ", linkedTo=" + linkedTo +
+                '}';
+    }
 }
