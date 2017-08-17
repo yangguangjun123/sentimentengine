@@ -17,8 +17,14 @@ public class Sentiment {
 	String authorName;
 	String authorLocation;
 	
+	@Relationship(type="LINKED_TO", direction=Relationship.INCOMING)
+	Set<Sentiment> linkedFrom;
+
+	@Relationship(type="LINKED_TO", direction=Relationship.OUTGOING)
+	Set<Sentiment> linkedTo;
+
 	public Sentiment(String sourceId, String text, String sourceName, String authorName,
-			String authorLocation) {
+					 String authorLocation) {
 		super();
 		this.sourceId = sourceId;
 		this.text = text;
@@ -26,11 +32,9 @@ public class Sentiment {
 		this.authorName = authorName;
 		this.authorLocation = authorLocation;
 	}
-	
-	@Relationship(type="LINKED_TO", direction=Relationship.INCOMING)
-	Set<Sentiment> linkedFrom;
-	
-	@Relationship(type="LINKED_TO", direction=Relationship.OUTGOING)
-	Set<Sentiment> linkedTo;
-	
+
+	public Set<Sentiment> getLinkedFrom() {
+	    return linkedFrom;
+    }
+
 }
