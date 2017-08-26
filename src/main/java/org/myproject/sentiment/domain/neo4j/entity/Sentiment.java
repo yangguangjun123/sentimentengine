@@ -9,19 +9,19 @@ import org.neo4j.ogm.annotation.Relationship;
 @NodeEntity
 public class Sentiment {
 	@GraphId
-	String id;
+	private  String id;
 	
-	String sourceId;
-	String text;
-	String sourceName;
-	String authorName;
-	String authorLocation;
+	private String sourceId;
+	private String text;
+	private String sourceName;
+	private String authorName;
+	private String authorLocation;
 	
 	@Relationship(type="LINKED_TO", direction=Relationship.INCOMING)
-	Set<Sentiment> linkedFrom;
+	private Set<Sentiment> linkedFrom;
 
 	@Relationship(type="LINKED_TO", direction=Relationship.OUTGOING)
-	Set<Sentiment> linkedTo;
+	private Set<Sentiment> linkedTo;
 
 	public Sentiment(String sourceId, String text, String sourceName, String authorName,
 					 String authorLocation) {

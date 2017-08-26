@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 public interface SentimentRepository extends GraphRepository<Sentiment> {
 
 	// derived finder
-	Sentiment findBySourceId(String sourceId);
+	// Sentiment findBySourceId(String sourceId);
 	
 	@Query("MATCH (sentiment:Sentiment)<-[r:LINKED_TO]-(other:Sentiment) "
 			+ "WHERE id(sentiment) = {sentiment} RETURN other")

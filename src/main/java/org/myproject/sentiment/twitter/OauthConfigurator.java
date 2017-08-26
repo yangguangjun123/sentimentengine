@@ -1,8 +1,8 @@
 package org.myproject.sentiment.twitter;
 
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -14,7 +14,7 @@ public class OauthConfigurator {
 	private static final String CONSUMER_SECRET = "oauth.consumerSecret";
 	private static final String ACCESS_TOKEN = "oauth.accessToken";
 	private static final String ACCESS_TOKEN_SECRET = "oauth.accessTokenSecret";
-    private static final Logger logger = LogManager.getLogger(OauthConfigurator.class);
+    private static final Logger logger = LoggerFactory.getLogger(OauthConfigurator.class);
 
     private Properties properties = new Properties();
 
@@ -53,12 +53,12 @@ public class OauthConfigurator {
 
 	public static void main( String[] args )
 	{
-		logger.log(Level.TRACE, "Hello OauthConfigurator!");
+		logger.trace("Hello OauthConfigurator!");
 
 		OauthConfigurator config = new OauthConfigurator();
-		logger.trace("consumer key: {}", config::getConsumerKey);
-		logger.trace("consumer secret: {}", config::getConsumerSecret);
-		logger.trace("access token: {}", config::getAccessToken);
-		logger.trace("access token secret: {}", config::getAccessTokenSecret);
+		logger.trace("consumer key: " +  config.getConsumerKey());
+		logger.trace("consumer secret: " + config.getConsumerSecret());
+		logger.trace("access token: " + config.getAccessToken());
+		logger.trace("access token secret: " + config.getAccessTokenSecret());
 	}
 }

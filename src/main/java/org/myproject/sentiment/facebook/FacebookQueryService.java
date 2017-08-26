@@ -6,8 +6,8 @@ import com.restfb.Parameter;
 import com.restfb.Version;
 import com.restfb.types.*;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.myproject.sentiment.interfaces.SentimentExtractor;
 import org.myproject.sentiment.engine.SocialTopicSentimentEngine;
 import org.myproject.sentiment.engine.UserSentiment;
@@ -36,7 +36,7 @@ public class FacebookQueryService implements SentimentExtractor {
     private ConcurrentHashMap<String, String> locationLookup = new ConcurrentHashMap<>();
     private LongAdder count = new LongAdder();
     
-    private static final Logger logger = LogManager.getLogger(FacebookQueryService.class);
+    private static final Logger logger = LoggerFactory.getLogger(FacebookQueryService.class);
     
     private DefaultFacebookClient facebookClient = null;    
     
@@ -172,12 +172,12 @@ public class FacebookQueryService implements SentimentExtractor {
 	public static void main(String[] args) {
 		AuthService auth = new AuthService();
 		String accessToken = auth.getAccessToken();
-		logger.trace("access token: {}", () -> accessToken );
+		logger.trace("access token: {}", accessToken);
 		
 		FacebookQueryService queryService = new FacebookQueryService();
 		List<Post> posts = queryService.getPosts("661181370658667");
-					posts.stream()
-						 .forEach(logger::info);
+		posts.stream()
+			 .forEach(p -> logger.info(p.toString()));
 
 		AtomicInteger currentCount = new AtomicInteger(0);
 		queryService.getAllPostComments("661181370658667_979813902118868", new ConcurrentHashMap<>())
@@ -193,7 +193,7 @@ public class FacebookQueryService implements SentimentExtractor {
 		logger.info("topic: " + args[0]);
 		List<UserSentiment> sentiments = queryService.getSentiments(args[0], new HashMap<>());
 		logger.info("total number of user sentiments created: " + sentiments.size());
-		sentiments.forEach(logger::info);
+		sentiments.forEach(s -> logger.info(s.toString()));
 	}
 	
 }
