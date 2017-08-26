@@ -6,25 +6,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.myproject.sentiment.interfaces.SentimentExtractor;
 import org.myproject.sentiment.engine.SocialTopicSentimentEngine;
 import org.myproject.sentiment.engine.UserSentiment;
 
-import twitter4j.Query;
-import twitter4j.QueryResult;
-import twitter4j.ResponseList;
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
+import twitter4j.*;
 import twitter4j.conf.PropertyConfiguration;
 
 public class TwitterQueryService implements SentimentExtractor {
 	private static final String LANG_PARAM = "lang";
 	public static final String DEFAULT_LANG = "en";
-	private static final Logger logger = LogManager.getLogger(TwitterQueryService.class);
+	private static final Logger logger = LoggerFactory.getLogger(TwitterQueryService.class);
 	
 	private Twitter twitter = null;
 	
@@ -96,7 +90,7 @@ public class TwitterQueryService implements SentimentExtractor {
 	public static void main(String[] args) throws TwitterException {
 		TwitterQueryService twitterQueryService = new TwitterQueryService();
 		twitterQueryService.getSentiments(args[0], new HashMap<>())
-						   .forEach(logger::info);
+						   .forEach(s -> logger.info(s.toString()));
 		
 //		PropertyConfiguration config = new PropertyConfiguration(
 //				TwitterQueryService.class.getResourceAsStream("/twitter4j.properties"));
