@@ -16,8 +16,8 @@ import java.util.concurrent.Executors;
 
 @Component
 public class SocialTopicSentimentEngine implements CommandLineRunner {
-	public static final String TWITTER = "Twitter";
-	public static final String FACEBOOK = "Facebook";
+	//public static final String TWITTER = "Twitter";
+	//public static final String FACEBOOK = "Facebook";
 	
 	private static final int MAX_EXECTOR_POOL_SIZE = 100;
 	private final List<SentimentExtractor> extractors = Arrays.asList(new TwitterQueryService(),

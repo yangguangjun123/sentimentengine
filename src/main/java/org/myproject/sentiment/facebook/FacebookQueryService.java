@@ -6,6 +6,7 @@ import com.restfb.Parameter;
 import com.restfb.Version;
 import com.restfb.types.*;
 import org.apache.commons.lang3.StringUtils;
+import org.myproject.sentiment.engine.SentimentSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.myproject.sentiment.interfaces.SentimentExtractor;
@@ -75,7 +76,7 @@ public class FacebookQueryService implements SentimentExtractor {
 		logger.info("message from(id)" + comment.getFrom().getId());
 		UserSentiment userSentiment = new UserSentiment(comment.getId(), comment.getMessage(), 
 				comment.getFrom().getName(), locationLookup.get(comment.getFrom().getId()), 
-				SocialTopicSentimentEngine.FACEBOOK);
+				SentimentSource.FACEBOOK);
 		if(Objects.isNull(comment.getComments()) || Objects.isNull(comment.getComments().getData())) {
 			logger.info("no reply comments" );
 		} else {

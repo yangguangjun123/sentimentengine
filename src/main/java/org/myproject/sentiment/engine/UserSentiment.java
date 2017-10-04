@@ -11,12 +11,12 @@ public class UserSentiment {
 	private String text;
 	private String userName;
 	private String userLocation;
-	private String source;
+	private SentimentSource source;
 	private String parentId;  // model retweets/parent comment
 	private List<String> linkedSentiments;
 	
 	public UserSentiment(String id, String text, String userName, 
-			String userLocation, String source) {
+			String userLocation, SentimentSource source) {
 		this.id = id;
 		this.text = text;
 		this.userName = userName;
@@ -45,11 +45,11 @@ public class UserSentiment {
 		this.userLocation = userLocation;
 	}
 	
-	public String getSource() {
+	public SentimentSource getSource() {
 		return source;
 	}
 
-	public void setSource(String source) {
+	public void setSource(SentimentSource source) {
 		this.source = source;
 	}
 		
